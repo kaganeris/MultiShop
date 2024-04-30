@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using MultiShop.Catalog.Services.CategoryServices;
 using MultiShop.Catalog.Services.ProductDetailServices;
@@ -13,6 +14,14 @@ namespace MultiShop.Catalog
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.Authority = builder.Configuration["IdentityServerUrl"];
+                opt.RequireHttpsMetadata = false; //appsettings.json içerisinde http verdiðimiz için false dedik
+                opt.Audience = "ResourceCatalog"; // Bizim config tarafýnda dinleyici olan keyimiz
+
+            });
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IProductService, ProductService>();
@@ -43,7 +52,7 @@ namespace MultiShop.Catalog
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

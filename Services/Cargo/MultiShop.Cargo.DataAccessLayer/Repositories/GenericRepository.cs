@@ -23,7 +23,7 @@ namespace MultiShop.Cargo.DataAccessLayer.Repositories
             _context.SaveChanges();
         }
 
-        public List<T> GetAll(int id)
+        public List<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }

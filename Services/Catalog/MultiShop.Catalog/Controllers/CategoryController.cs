@@ -8,6 +8,7 @@ namespace MultiShop.Catalog.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
+    [AllowAnonymous]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -19,7 +20,6 @@ namespace MultiShop.Catalog.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> CategoryList()
         {
             var values = await categoryService.GetAllCategoriesAsync();

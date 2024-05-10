@@ -9,6 +9,7 @@ namespace MultiShop.Catalog.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ProductController : ControllerBase
     {
         private readonly IProductService productService;

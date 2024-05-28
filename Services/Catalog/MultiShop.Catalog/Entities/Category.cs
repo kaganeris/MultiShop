@@ -9,5 +9,6 @@ namespace MultiShop.Catalog.Entities
         [BsonRepresentation(BsonType.ObjectId)] // Bunun bir Id olduğunu uygulamaya belirttik
         public string CategoryID { get; set; } // MongoDB'de ID'ler string olarak tutulur.
         public string CategoryName { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

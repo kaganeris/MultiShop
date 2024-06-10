@@ -1,4 +1,10 @@
-﻿namespace MultiShop.Catalog.Dtos.ProductDetailDtos
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MultiShop.DtoLayer.CatalogDtos.ProductDetailDtos
 {
     public class ResultProductDetailDto
     {

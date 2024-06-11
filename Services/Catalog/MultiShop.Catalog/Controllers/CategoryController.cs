@@ -8,7 +8,6 @@ namespace MultiShop.Catalog.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    [AllowAnonymous]
     [ApiController]
     public class CategoryController : ControllerBase
     {

@@ -1,3 +1,4 @@
+Ocelot --> 5000
 Identity --> 5001
 Catalog --> 7150
 Discount --> 7151
@@ -5,3 +6,5 @@ Order --> 7152
 Cargo --> 7153
 Basket --> 7154
 Comment --> 7155
+Payment --> 7156
+Images --> 7157

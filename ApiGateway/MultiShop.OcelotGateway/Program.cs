@@ -1,15 +1,25 @@
-namespace MultiShop.OcelotGateway
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+
+var builder = WebApplication.CreateBuilder(args);
+
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("ocelot.json").Build();
+
+builder.Services.AddOcelot(configuration);
+
+builder.Services.AddAuthentication().AddJwtBearer("OcelotAuthenticationScheme",opt =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.RequireHttpsMetadata = false; //appsettings.json içerisinde http verdiðimiz için false dedik
+    opt.Audience = "ResourceOcelot"; // Bizim config tarafýnda dinleyici olan keyimiz
 
-            app.MapGet("/", () => "Hello World!");
+});
 
-            app.Run();
-        }
-    }
-}
+var app = builder.Build();
+
+await app.UseOcelot();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();

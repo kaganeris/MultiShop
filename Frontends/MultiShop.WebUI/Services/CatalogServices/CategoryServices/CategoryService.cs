@@ -27,10 +27,10 @@ namespace MultiShop.WebUI.Services.CatalogServices.CategoryServices
             return values;
         }
 
-        public async Task<GetByIdCategoryDto> GetByIdCategoryAsync(string id)
+        public async Task<UpdateCategoryDto> GetByIdCategoryAsync(string id)
         {
             var responseMessage = await httpClient.GetAsync($"category/{id}");
-            var value = await responseMessage.Content.ReadFromJsonAsync<GetByIdCategoryDto>();
+            var value = await responseMessage.Content.ReadFromJsonAsync<UpdateCategoryDto>();
             return value;
         }
 
